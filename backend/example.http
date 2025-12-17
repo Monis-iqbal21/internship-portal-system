@@ -1,0 +1,122 @@
+### Register
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "a3",
+  "email": "a3@a.com",
+  "password": "test1234a"
+}
+
+### Login
+### Login (optional, for getting token)
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "amaan@gmail.com",
+  "password": "12345678"
+}
+
+### ADMIN Login 
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "password": "admin1234"
+}
+### Access Admin Dashboard
+GET http://localhost:8000/api/admin/dashboard
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDdkMGQyYjU3OWZjZDRkYmUyZDdjNiIsImlhdCI6MTc2MjExOTkxMCwiZXhwIjoxNzYyNzI0NzEwfQ.Z09ViPr_x6YbHA6YgmYVLjp3Th-pObt4y4ggRs3_inQ
+
+
+
+### adding domain with tasks
+POST http://localhost:8000/api/domain/addDomain
+Content-Type: application/json
+
+{
+  "name": "content Marketing",
+  "durationInMonths": 5,
+  "defaultTasks": [
+    { "title": "Portfolio Website", "description": "Create a personal portfolio" },
+    { "title": "React Project", "description": "Build a small React app" },
+    { "title": "Portfolio Website", "description": "Create a personal portfolio" },
+    { "title": "React Project", "description": "Build a small React app" }
+  ]
+}
+
+
+### showing all domain with tasks
+GET  http://localhost:8000/api/domain/getAllDomains
+Content-Type: application/json
+
+
+### updating domain with tasks
+PUT http://localhost:8000/api/domain/updateDomain/68e6eb4a1a9a55b7294f5d38
+Content-Type: application/json
+
+{
+  "name": "Updated Web Development",
+  "durationInMonths": 8,
+  "defaultTasks": [
+    {
+      "title": "Setup Updated Project",
+      "description": "Install all dependencies again and refactor structure"
+    },
+    {
+      "title": "New Task Added",
+      "description": "Test updating multiple tasks"
+    }
+  ]
+}
+
+
+
+### delete domain with tasks
+DELETE  http://localhost:8000/api/domain/deleteDomain/68e6eb4a1a9a55b7294f5d38
+Content-Type: application/json
+
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZTk5MTQ1YTBmZGIzMGZkOGRiMjdmNiIsImlhdCI6MTc2MDEzNzU1OCwiZXhwIjoxNzYwNzQyMzU4fQ.W3OcmsIdMmaROzxo9CwW8m3sxYueJeE5j31ZgcKrZY4
+# 68e6eb091a9a55b7294f5d30
+
+
+### Student Apply for Internship
+PUT http://localhost:8000/api/student/apply
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWQ4NWY4NzgxNTg3MTQ5MjU2MGZkOSIsImlhdCI6MTc2MDM5Njc5NiwiZXhwIjoxNzYxMDAxNTk2fQ.0FlKqfjNkK7-uEVT82DdxsVuUM53A8niE-Wz3qLv7oo
+
+{
+  "domainId": "68e6eb091a9a55b7294f5d30"
+}
+
+### Admin View All Applications 
+GET http://localhost:8000/api/admin/applications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZTFhNThkY2FjNDgwNzM4YmZkNTAyNSIsImlhdCI6MTc2MDM4ODQzNSwiZXhwIjoxNzYwOTkzMjM1fQ.JUCR2himTIH-Bv8u_a2Fqhu5KZry2wBKgEhAo2qxvHU
+
+
+### Approve student application
+PUT http://localhost:8000/api/admin/approve/68ed85f87815871492560fd9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZTFhNThkY2FjNDgwNzM4YmZkNTAyNSIsImlhdCI6MTc2MDM5NjkzMSwiZXhwIjoxNzYxMDAxNzMxfQ.uyx0cckfI_bqPLJ3LOJfrT7_hAbjLgEcF-dWBAPxS8k
+
+### student dashboard 
+GET http://localhost:8000/api/student/dashboard/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWQ4NWY4NzgxNTg3MTQ5MjU2MGZkOSIsImlhdCI6MTc2MDU2NzYzMywiZXhwIjoxNzYxMTcyNDMzfQ.STkitCo6JOloKbr3yygrCKch7K-PwVxa5iBrKkV5-ZY
+
+### student task submission
+POST http://localhost:8000/api/student/dashboard/task-submission/68ed86907815871492560fe9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWQ4NWY4NzgxNTg3MTQ5MjU2MGZkOSIsImlhdCI6MTc2MDU2NzYzMywiZXhwIjoxNzYxMTcyNDMzfQ.STkitCo6JOloKbr3yygrCKch7K-PwVxa5iBrKkV5-ZY
+Content-Type: application/json
+
+{
+  "submissionLink": "https://github.com/student/task1"
+}
+
+
+### Admin View Submitted Applications
+GET http://localhost:8000/api/admin/dashboard/submitted-applications/submissions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZTFhNThkY2FjNDgwNzM4YmZkNTAyNSIsImlhdCI6MTc2MDk5NjUyMywiZXhwIjoxNzYxNjAxMzIzfQ.xWZfva4REohBRKG2DXcbVhHjLbk1ipnVyHppbpBJDMc
+
+
+
