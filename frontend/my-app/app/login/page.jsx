@@ -51,17 +51,27 @@ const Login = () => {
       });
       const data = await response.json();
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error("login failed :", errorData);
-        setError(`login failed: ${errorData.message || "Check your inputs"}`);
+        setError(`login failed: ${error.message || "Check your inputs"}`);
         setLoading(false);
         return;
       }
       if(data.token){
         localStorage.setItem("token", data.token);
       }
+      // role base redirection
       console.log("Login successful");
-      router.push("/dashboard");
+      if(data.user.role == "student" ){
+        router.push("/student/dashboard");
+        console.log(data)
+      } else if(data.user.role == "admin"){
+        router.push("/admin/dashboard");
+        console.log(data)
+      } else{
+        router.push("/page404");
+        console.log(data)
+      }
+
+
     } catch (e) {
       console.error("Error during Login", e);
       setError("An unexpected error occurred. Please try again later.");
@@ -100,7 +110,7 @@ const Login = () => {
           {loading ? " Logging In..." : "Login"}
         </button>
         <p>
-          Don't have an account?
+          Don&apos;t have an account?
           <Link href="/signup" className="text-blue-600 hover:underline">
             SignUp
           </Link>
